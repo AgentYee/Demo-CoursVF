@@ -40,9 +40,10 @@ namespace Demo_GitHub.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(SelectListItem category)
+        public ActionResult IndexCategory(string selectedValue)
         {
-            var products = db.Products.Where(p => p.Categories.CategoryName == category.Text).Include(p => p.Categories).Include(p => p.Suppliers);
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+            var products = db.Products.Where(p => p.Categories.CategoryName == selectedValue).Include(p => p.Categories).Include(p => p.Suppliers);
             return View(products.ToList());
         }
 

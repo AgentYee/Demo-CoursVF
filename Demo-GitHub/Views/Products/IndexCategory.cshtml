@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Demo_GitHub.Products>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexCategory";
 }
 
-<h2>Index</h2>
+<h2>IndexCategory</h2>
 
 @using (Html.BeginForm("Index", "Products", FormMethod.Post))
 {
@@ -16,7 +16,7 @@
             <td>@Html.ActionLink("Show all products", "Index", "Products")</td>
         </tr>
         <tr>
-            <td>@Html.DropDownListFor("CategoryID", (IEnumerable<SelectListItem>)ViewBag.CategoryID,new { onchange = "submit()" })</td>
+            <td>@Html.DropDownList("CategoryID", (IEnumerable<SelectListItem>)ViewBag.CategoryID, new { onchange = "submit()" })</td>
         </tr>
     </table>
 }
@@ -55,39 +55,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuantityPerUnit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitsInStock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UnitsOnOrder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReorderLevel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discontinued)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categories.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Suppliers.CompanyName)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReorderLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discontinued)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suppliers.CompanyName)
+            </td>
+        </tr>
+    }
 
 </table>
