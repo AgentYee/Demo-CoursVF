@@ -15,6 +15,9 @@
             <td><input type="submit" value="Go" /></td>
             <td>@Html.ActionLink("Show all products","Index","Products")</td>
         </tr>
+        <tr>
+            <td>@Html.DropDownList("CategoryID", ViewBag,new { onchange = "submit()" })</td>
+        </tr>
     </table>
 }
 <table class="table">

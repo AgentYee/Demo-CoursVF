@@ -18,6 +18,10 @@ namespace Demo_GitHub.Controllers
         public ActionResult Index()
         {
             var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
+
+
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+
             return View(products.ToList());
         }
 
@@ -29,10 +33,17 @@ namespace Demo_GitHub.Controllers
                 var products = db.Products.Where(p => p.ProductName.Contains(productName)).Include(p => p.Categories).Include(p => p.Suppliers);
                 return View(products.ToList());
             }
-            else {
+            else
+            {
                 return RedirectToAction("Index");
             }
+        }
 
+        [HttpPost]
+        public ActionResult Index(SelectListItem category)
+        {
+            var products = db.Products.Where(p => p.Categories.CategoryName == category.Text).Include(p => p.Categories).Include(p => p.Suppliers);
+            return View(products.ToList());
         }
 
         // GET: Products/Details/5
@@ -67,6 +78,7 @@ namespace Demo_GitHub.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,6 +88,7 @@ namespace Demo_GitHub.Controllers
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "CompanyName", products.SupplierID);
             return View(products);
         }
+
 
         // GET: Products/Edit/5
         public ActionResult Edit(int? id)
