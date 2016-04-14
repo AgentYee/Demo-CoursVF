@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Demo_GitHub.Products>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Products", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.Label("Rechercher produit par nom ")</td>
+            <td><input type="text" name="productName" /></td>
+            <td><input type="submit" value="Go" /></td>
+            <td>@Html.ActionLink("Show all products","Index","Products")</td>
+        </tr>
+    </table>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityPerUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitsOnOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReorderLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discontinued)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categories.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suppliers.CompanyName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsInStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitsOnOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReorderLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discontinued)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suppliers.CompanyName)
+        </td>
+    </tr>
+}
+
+</table>
